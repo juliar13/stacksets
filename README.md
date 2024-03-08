@@ -14,4 +14,11 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `npx cdk synth`   emits the synthesized CloudFormation template
 
 
+## TODO
+
 スイッチロール作る
+
+## Command
+
+cdk diff
+cdk deploy

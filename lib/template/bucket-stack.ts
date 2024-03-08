@@ -24,16 +24,5 @@ export class CloudtrailStack extends cdk.Stack {
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
-
-    /**
-     * Create CloudTrail
-     */
-    new cloudtrail.Trail(this, 'CloudTrail', {
-      bucket: bucket,
-      enableFileValidation: true,
-      isMultiRegionTrail: true,
-      sendToCloudWatchLogs: false,
-      trailName: `cloudtrail-${cdk.Aws.ACCOUNT_ID}`,
-    });
   }
 }
