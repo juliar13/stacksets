@@ -37,7 +37,15 @@ export class LambdaStack extends cdk.Stack {
     });
 
     new lambda.Function(this, "LambdaFunction", {
-      code: new lambda.AssetCode("./lambda"),
+      // StackSets の場合、なぜかコードを別に用意する方法ではNoSuchBucket エラーになる
+      // code: new lambda.AssetCode("./lambda"),
+      code: new lambda.InlineCode(`
+      def lambda_handler(event, context):
+          return {
+              'statusCode': 200,
+              'body': 'Hello from Lambda!'
+          }
+      `),
       runtime: lambda.Runtime.PYTHON_3_12,
       handler: "default_vpc.lambda_handler",
       memorySize: memorySize,

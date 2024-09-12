@@ -11,6 +11,9 @@ const env = {
   region: process.env.CDK_DEFAULT_REGION
 };
 
+// tags
+
+
 new LambdaStack(stage, 'CloudTrailStack', {
   synthesizer: new cdk.DefaultStackSynthesizer({ generateBootstrapVersionRule: false }),
 });
@@ -19,7 +22,11 @@ const template1 = stage.synth().stacks[0].template;
 new StackSetsStack(app, 'StackSetsStack', {
   stackSetsName: 'stacksets-test',
   env: env,
-  organizationalUnitIds: ['ou-213w-190ou3ha'], // Sandbox OU
+  organizationalUnitIds: [
+    'r-213w', // root
+    // 'ou-213w-190ou3ha', // Sandbox OU
+    // 'ou-213w-p6xb61nq' // PolicyStaging OU
+  ],
   regions: ['ap-northeast-1'],
   templateBody: JSON.stringify(template1),
 });
