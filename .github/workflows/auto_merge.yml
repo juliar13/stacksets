@@ -11,4 +11,5 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         steps:
             - uses: actions/checkout@v4
-            - run: gh pr merge "${GITHUB_TOKEN} --merge"
+            - run: gh pr review "${GITHUB_HEAD_REF}" --approve
+            - run: gh pr merge "${GITHUB_HEAD_REF}" --merge --auto --delete-branch
